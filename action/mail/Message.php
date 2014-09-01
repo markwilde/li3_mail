@@ -10,16 +10,44 @@ class Message extends \lithium\core\Object {
 		'transport'
 	);
 
-	public $to = null;
+	protected $to = null;
 
-	public $from = null;
+	protected $from = null;
 
-	public $subject = null;
+	protected $subject = null;
 
-	public $body = null;
+	protected $body = null;
 
 	public function headers() {
 		return null;
+	}
+
+	public function from($address = null) {
+		if($address) {
+			return $this->from = $address;
+		}
+		return $this->from;
+	}
+
+	public function to($address = null) {
+		if($address) {
+			return $this->to = $address;
+		}
+		return $this->to;
+	}
+
+	public function subject($subject = null) {
+		if($subject) {
+			return $this->subject = $subject;
+		}
+		return $this->subject;
+	}
+
+	public function body($body = null) {
+		if($body) {
+			return $this->body = $body;
+		}
+		return $this->body;
 	}
 
 	public function validates() {
