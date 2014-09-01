@@ -7,7 +7,7 @@ use BadMethodCallException;
 class Message extends \lithium\core\Object {
 
 	protected $_autoConfig = array(
-		'queue'
+		'transport'
 	);
 
 	public $to = null;
@@ -18,12 +18,20 @@ class Message extends \lithium\core\Object {
 
 	public $body = null;
 
+	public function headers() {
+		return null;
+	}
+
+	public function validates() {
+		return true;
+	}
+
 	public function send() {
 		$method = __FUNCTION__;
 		if ($transport = $this->_transport) {
 			return call_user_func_array(array(&$transport, $method), array($this));
 		}
-		$message = "No queue bound to call `{$method}`.";
+		$message = "No transport bound to call `{$method}`.";
 		throw new BadMethodCallException($message);
 	}
 

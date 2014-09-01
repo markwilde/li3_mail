@@ -26,8 +26,8 @@ class Mail extends \lithium\core\Adaptable {
 	 * @param mixed $options Options for the method
 	 * @return boolean True on successful cache write, false otherwise
 	 */
-	public static function create($name, $data, array $options = array()) {
-		$method = static::adapter($name)->create($data, $options);
+	public static function create($name, array $options = array()) {
+		$method = static::adapter($name)->create($options);
 		return $method;
 	}
 
